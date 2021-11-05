@@ -18,6 +18,7 @@ object RestServer extends App with LambdaController {
   lazy val apiRoutes: Route = pathPrefix("api") {
     routes
   }
+  logger.info("Server Running at Port: " + config.getInt("server.port"));
   //binds to port
   Http().bindAndHandle(apiRoutes, config.getString("server.host"), config.getInt("server.port"))
   //awaits requests from clients

@@ -17,6 +17,7 @@ import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.{Await, Future}
 import scala.util.{Failure, Success}
 
+
 //acts as server and client. Server for the RESTful API and client of aws api find
 //checks and find logs invoking aws lambda functions
 object LambdaController {
@@ -54,7 +55,7 @@ object LambdaController {
       logger.info("Calling awsLambda: findLogs")
       val response = client.execute(post)
       val responseEntity = response.getEntity()
-      val str = EntityUtils.toString(responseEntity)
+      val str = EntityUtils.toString(responseEntity, "UTF-8")
       Future{
         str
       }
@@ -87,7 +88,24 @@ trait LambdaController
                 complete(StatusCodes.OK, found)
               case Failure(throwable) =>
                 logger.error("Logs does not exist for input: " + para)
-                complete(StatusCodes.InternalServerError, "Failed to get the employees.")
+                complete(StatusCodes.InternalServerError, "Logs does not exist for input: " + para)
+            }
+          }
+        }
+      }
+      post {
+        path("post") {
+          entity(as[String]) { para =>
+            println(para);
+            onComplete(findLogs(para)) {
+              _ match {
+                case Success(found) =>
+                  logger.info("Received Logs for input: " + para)
+                  complete(StatusCodes.OK, found)
+                case Failure(throwable) =>
+                  logger.error("Logs does not exist for input: " + para)
+                  complete(StatusCodes.InternalServerError, "Logs does not exist for input: " + para)
+              }
             }
           }
         }
