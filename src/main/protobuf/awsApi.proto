@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package com.example.protos;
+
+// The greeting service definition.
+service InvokeAwsApi {
+  // Sends a greeting
+  rpc awsResponse (LogParameters) returns (AwsReply) {}
+}
+
+// The request message containing the user's name.
+message LogParameters {
+  string time = 1;
+  string interval = 2;
+}
+
+// The response message containing the greetings
+message AwsReply {
+  string message = 1;
+}
