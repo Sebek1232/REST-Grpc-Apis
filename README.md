@@ -28,6 +28,11 @@ Now while in the sbt server you can run
 
 ``runMain RestServer`` : to Start REST Server
 
+Test: 
+
+``sbt test``
+
+
 ## RESTful API Usage
 After starting ``RestServer`` the server will listen on port 50051
 
