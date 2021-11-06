@@ -92,8 +92,7 @@ trait LambdaController
             }
           }
         }
-      }
-      post {
+      } ~post {
         path("post") {
           entity(as[String]) { para =>
             println(para);
