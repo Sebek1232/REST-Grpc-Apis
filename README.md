@@ -1,4 +1,8 @@
-##How to Run
+# REST Grpc APIs
+# Sebastian Greczek
+# AWS Deployment Video : 
+## How to Run
+
 ``sbt clean compile run``
 
 This will produce:
@@ -24,10 +28,10 @@ Now while in the sbt server you can run
 
 ``runMain RestServer`` : to Start REST Server
 
-##RESTful API Usage
+## RESTful API Usage
 After starting ``RestServer`` the server will listen on port 50051
 
-###Get Request:
+### Get Request:
 To make a get request you can use the curl command with a json string as parameter. The 
 get api path is: `` ./api/logs/{"json string"}``
 
@@ -42,7 +46,7 @@ Windows requires ``" "`` and ``{}`` to be escaped. To get a valid Windows curl u
 put ```http://localhost:50051/api/logs/{"start": "val", "interval": "val"}``` into a web 
 browser url and it will translate the url to a valid Windows shell url like above. 
 
-###Post Request:
+### Post Request:
 To make a get request you can use the curl command. The
 get api path is: ``./api/logs/post``
 
@@ -76,7 +80,7 @@ A ```GrpcClient``` passes parameters to the ``GrpcServer``. Then the server invo
 aws Lambda functions using the AWS APIs. Once a reply is returned the server sends that 
 reply back to the client that passed the parameters.
 
-##AWS Lambda
+## AWS Lambda
 
 Two functions are defined: ``doesTimeExist`` and ``findLogs``
 
