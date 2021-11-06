@@ -29,6 +29,7 @@ object LambdaController {
   def doesLogExist(para:String): Boolean =
   {
     val time = para.substring(0, para.indexOf(",")) + "}";
+    println(time);
     val post = new HttpPost(config.getString("api.doesTimeExistUrl"))
     post.setHeader(HttpHeaders.AUTHORIZATION, config.getString("api.doesTimeExistAuth"))
     post.setEntity(new StringEntity(time,ContentType.APPLICATION_JSON))
@@ -95,7 +96,6 @@ trait LambdaController
       } ~post {
         path("post") {
           entity(as[String]) { para =>
-            println(para);
             onComplete(findLogs(para)) {
               _ match {
                 case Success(found) =>
