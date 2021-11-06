@@ -1,6 +1,6 @@
 # REST Grpc APIs
 # Sebastian Greczek
-# AWS Deployment Video : 
+# AWS Deployment Video : https://youtu.be/LPIAiKEG-VA
 ## How to Run
 
 ``sbt clean compile run``
